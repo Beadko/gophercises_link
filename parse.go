@@ -1,7 +1,6 @@
 package link
 
 import (
-	"fmt"
 	"io"
 
 	"golang.org/x/net/html"
@@ -21,15 +20,25 @@ func Parse(r io.Reader) ([]Link, error) {
 	if err != nil {
 		return nil, err
 	}
-	// 1. find <a> nodes in document
 	nodes := linkNodes(doc)
+	var links []Link
 	for _, node := range nodes {
-		fmt.Println(node)
+		links = append(links, buildLink(node))
 	}
-	// 2. for search link node...
-	// 2.a build a Link
-	// 3. return the Links
-	return nil, nil
+	return links, nil
+}
+
+func buildLink(n *html.Node) Link {
+	var r Link
+	for _, attr := range n.Attr {
+		if attr.Key == "href" {
+			r.Href = attr.Val
+			break
+		}
+	}
+	r.Text = "TODO: Parse the text..."
+
+	return r
 }
 
 func linkNodes(n *html.Node) []*html.Node {
