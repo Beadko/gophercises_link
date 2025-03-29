@@ -1,4 +1,4 @@
-module github.com/Beadko/gophercizes_link
+module github.com/Beadko/gophercises_link
 
 go 1.23.1
 

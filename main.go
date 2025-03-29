@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Beadko/gophercizes_link/link"
+	"github.com/Beadko/gophercises_link/link"
 )
 
 var (
